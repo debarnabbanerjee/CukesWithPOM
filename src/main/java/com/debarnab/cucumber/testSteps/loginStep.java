@@ -1,48 +1,68 @@
 package com.debarnab.cucumber.testSteps;
 
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import pages.landingPage;
+import pages.signInPage;
 import util.basicStep;
-
-/**
- * Created by Debarnab on 2/20/2018.
- */
 public class loginStep extends basicStep {
+
+    private landingPage landingPageClass;
+    private WebDriver driver;
+    private Object result;
+    private signInPage loginPage;
+
+    @After
+    public void tearDown(Scenario scenario) {
+        if (scenario.isFailed()) {
+            // Take a screenshot...
+            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
+        }
+    }
 
     @Given("^I open Browser using \"([^\"]*)\"$")
     public void i_open_Browser_using(String browserType) throws Throwable {
-        openBrowser(browserType);
+        driver = openBrowser(browserType);
         Assert.assertTrue(getDriver() != null);
     }
 
-    @When("^I go to Login page$")
-    public void i_go_to_Login_page() throws Throwable {
-        Assert.assertTrue("Unable to load url from prop file",getProperty("url") instanceof String);
+    @When("^I navigate to the base Url$")
+    public void i_navigate_to_base_url() throws Throwable {
+        Assert.assertTrue("Unable to load url from prop file",getProperty("url") !=null);
         navigateToPage(getProperty("url"));
     }
 
-    @When("^I fill in \"([^\"]*)\" with \"([^\"]*)\"$")
-    public void i_fill_in_with(String arg1, String arg2) throws Throwable {
-
+    @And("^I click on Sigin Link$")
+    public void i_click_on_signin_link(){
+        landingPageClass = new landingPage(driver);
+        result = landingPageClass.clickSignInLink();
+        Assert.assertEquals(result,"Sign In Link Clicked");
+        loginPage = new signInPage(driver);
     }
 
-    @When("^I press \"([^\"]*)\"$")
-    public void i_press(String arg1) throws Throwable {
-
+    @And("^I enter userName and Password as \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void i_fill_in_with(String username, String password) throws Throwable {
+        result= loginPage.doLogin(username, password);
+        Assert.assertEquals(result,"Able to click Sigin Button with credentials properly");
     }
 
-    @Then("^I should see \"([^\"]*)\"$")
+    @Then("^I should see logged in as \"([^\"]*)\"$")
     public void i_should_see(String arg1) throws Throwable {
-
+        result = loginPage.verifyPostLoginElements(arg1);
+        Assert.assertEquals(result,"Home Page Displayed Properly");
     }
 
     @And("^I exit browser$")
     public void i_exit_browser() throws Throwable {
         closeBrowser();
     }
-
-
 }

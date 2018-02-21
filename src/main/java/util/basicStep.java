@@ -25,7 +25,7 @@ public class basicStep {
         return ip;
     }
 
-    public void openBrowser(String browserType){
+    public WebDriver openBrowser(String browserType){
         if(browserType.equalsIgnoreCase("chrome")){
             System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"//chromedriver.exe");
             driver = new ChromeDriver();
@@ -35,6 +35,8 @@ public class basicStep {
         }else if(browserType.equalsIgnoreCase("ie")){
 
         }
+
+        return driver;
     }
 
     public void closeBrowser(){

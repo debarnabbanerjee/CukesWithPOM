@@ -2,14 +2,13 @@ Feature: testing Login Test Case
 
   Scenario Outline: Creating a new account
     Given I open Browser using "<browser>"
-    When I go to Login page
-    And I fill in "user_email" with "<email>"
-    And I fill in "user_password" with "<password>"
-    And I press "Sign up"
-    Then I should see "logged in as <email>"
+    When I navigate to the base Url
+    And I click on Sigin Link
+    And I enter userName and Password as "<email>" and "<password>"
+    Then I should see logged in as "<loginInName>"
     And I exit browser
 
     Examples:
-      | email            | password   | browser |
-      | testing@xyz.com  | secretpass | chrome  |
-      | testing2@xyz.com | fr33z3     | chrome  |
+      | email                       | password     | browser | loginInName |
+      | debarnab.banerjee@gmail.com | California0! | chrome  | Deb Bane    |
+      | abc@test.com                | 145879       | chrome  | Deb Bane    |
