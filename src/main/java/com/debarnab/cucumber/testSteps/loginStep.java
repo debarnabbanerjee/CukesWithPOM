@@ -16,7 +16,7 @@ import util.basicStep;
 public class loginStep extends basicStep {
 
     private landingPage landingPageClass;
-    private WebDriver driver;
+    public static WebDriver driver;
     private Object result;
     private signInPage loginPage;
 

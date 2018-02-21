@@ -44,7 +44,17 @@ public class topMenu {
         }
     }
 
+    protected void clickWoman(){
+        woman.click();
+    }
 
+    protected void clickDress(){
+        dress.click();
+    }
+
+    private void clickTShirt(){
+        tshirt.click();
+    }
 
 
 }
