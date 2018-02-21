@@ -27,6 +27,7 @@ public class loginStep extends basicStep {
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
         }
+        closeBrowser();
     }
 
     @Given("^I open Browser using \"([^\"]*)\"$")
@@ -59,10 +60,5 @@ public class loginStep extends basicStep {
     public void i_should_see(String arg1) throws Throwable {
         result = loginPage.verifyPostLoginElements(arg1);
         Assert.assertEquals(result,"Home Page Displayed Properly");
-    }
-
-    @And("^I exit browser$")
-    public void i_exit_browser() throws Throwable {
-        closeBrowser();
     }
 }

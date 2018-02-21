@@ -6,7 +6,6 @@ Feature: testing Login Test Case
     And I click on Sigin Link
     And I enter userName and Password as "<email>" and "<password>"
     Then I should see logged in as "<loginInName>"
-    And I exit browser
 
     Examples:
       | email                       | password     | browser | loginInName |
