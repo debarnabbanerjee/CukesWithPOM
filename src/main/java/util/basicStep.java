@@ -6,12 +6,15 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.FileInputStream;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class basicStep {
 
     private WebDriver driver;
     private Properties prop;
     private FileInputStream ip;
+    private boolean isPropertyLoaded=false;
+
 
     public WebDriver getDriver() {
         return driver;
@@ -35,7 +38,10 @@ public class basicStep {
         }else if(browserType.equalsIgnoreCase("ie")){
 
         }
-
+        driver.manage().window().maximize();
+        if(!isPropertyLoaded)
+            loadProperty();
+        driver.manage().timeouts().implicitlyWait(Long.parseLong(prop.getProperty("timeout")), TimeUnit.SECONDS);
         return driver;
     }
 
@@ -53,16 +59,23 @@ public class basicStep {
         driver.navigate().to(url);
     }
 
-    public String getProperty(String key){
+    private void loadProperty(){
         try{
             prop = new Properties();
             ip = new FileInputStream(System.getProperty("user.dir")+"//master.properties");
             prop.load(ip);
-
-            return prop.getProperty(key);
+            isPropertyLoaded=true;
 
         }catch (Exception e){
             System.out.println("Unable to load properties file");
+        }
+    }
+
+    public String getProperty(String key){
+        try{
+            return prop.getProperty(key);
+        }catch (Exception e){
+            System.out.println("Unable to read from properties file");
             return null;
         }
     }

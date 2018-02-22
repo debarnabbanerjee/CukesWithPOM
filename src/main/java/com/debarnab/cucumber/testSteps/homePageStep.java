@@ -21,17 +21,7 @@ public class homePageStep extends basicStep {
     private signInPage loginPage;
     private homePage homePageElement;
 
-//    @After
-//    public void tearDown(Scenario scenario) {
-//        if (scenario.isFailed()) {
-//            // Take a screenshot...
-//            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-//            scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
-//        }
-//        closeBrowser();
-//    }
-
-    @And("^In the Home Page I click on \"([^\"]*)\" section$")
+        @And("^In the Home Page I click on \"([^\"]*)\" section$")
     public void in_the_Home_Page_I_click_on(String clickElement) throws Throwable {
         if(homePageElement==null){
             homePageElement = new homePage(driver);

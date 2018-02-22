@@ -59,7 +59,6 @@ public class homePage {
     public String clickWomanSectionInHomePage(){
         try{
             topMenuSection.clickWoman();
-            System.out.println("title is " + driver.getTitle());
             if(!driver.getTitle().equalsIgnoreCase("Women - My Store")){
                 return "Expected Title - \"Woman - My Store\". But the actual was " + driver.getTitle();
             }
