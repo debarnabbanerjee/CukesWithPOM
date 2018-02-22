@@ -35,6 +35,6 @@ public class womanPageStep extends basicStep {
             list.add(data.get(i).get(0));
         }
        result= womanPageElement.validateSectionsName(section,list);
-        Assert.assertEquals("Categories section in Woman Page validated successfully.",result);
+        Assert.assertEquals("Section in Woman Page validated successfully.",result);
     }
 }

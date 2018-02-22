@@ -40,6 +40,12 @@ public class womanPage extends pageBase{
         else if(name.equalsIgnoreCase("Size"))
             return sizeSection(list);
 
+        else if(name.equalsIgnoreCase("Color"))
+            return colorSection(list);
+
+        else if(name.equalsIgnoreCase("Compositions"))
+            return compositionSection(list);
+
         return "Unable to find the section in the page";
     }
     // validating categories section
@@ -57,7 +63,7 @@ public class womanPage extends pageBase{
                 if (!listOfElements.contains(labelText))
                     return labelText + " is not present in the list of the expected category items " + listOfElements.toString();
             }
-            return "Categories section in Woman Page validated successfully.";
+            return "Section in Woman Page validated successfully.";
         } catch (IndexOutOfBoundsException e) {
             return "Mismatch of no of Items in Expected and Actual. Expected - " + listOfElements.toString() +
                     " Actual - " + actualListOfElements.toString();
@@ -90,7 +96,7 @@ public class womanPage extends pageBase{
                 if (!listOfElements.contains(labelText))
                     return labelText + " is not present in the list of the expected size items " + listOfElements.toString();
             }
-            return "Size section in Woman Page validated successfully.";
+            return "Section in Woman Page validated successfully.";
         } catch (IndexOutOfBoundsException e) {
             return "Mismatch of no of Items in Expected and Actual. Expected - " + listOfElements.toString() +
                     " Actual - " + actualListOfElements.toString();
@@ -99,5 +105,70 @@ public class womanPage extends pageBase{
     }
 
     // ######################################## END OF SIZE SECTION  #######################
+
+    // ********************************* validating COLOR section   *********************************
+
+    // size section
+    @FindBy(how = How.XPATH, using = "//*[@id='layered_form']/div/div[3]/div/span")
+    private WebElement colorSectionLabel;
+
+    @FindBy(how = How.XPATH, using = "//*[@id='ul_layered_id_attribute_group_3']")
+    private WebElement colorSectionContainer;
+
+    private String colorSection(ArrayList<String> listOfElements){
+        String labelText = "";
+        ArrayList<String> actualListOfElements = new ArrayList<String>();
+        try {
+            colorSectionLabel.isDisplayed();
+            scrollToElement(driver,colorSectionLabel);
+            List<WebElement> li = colorSectionContainer.findElements(By.tagName("li"));
+            for (int i = 0; i < listOfElements.size(); i++) {
+                WebElement webElement = li.get(i);
+                labelText = webElement.findElement(By.tagName("label")).getText();
+                actualListOfElements.add(labelText);
+                if (!listOfElements.contains(labelText))
+                    return labelText + " is not present in the list of the expected color items " + listOfElements.toString();
+            }
+            return "Section in Woman Page validated successfully.";
+        } catch (IndexOutOfBoundsException e) {
+            return "Mismatch of no of Items in Expected and Actual. Expected - " + listOfElements.toString() +
+                    " Actual - " + actualListOfElements.toString();
+        }
+    }
+    // ######################################## END OF COLOR SECTION  #######################
+
+    // ********************************* validating COMPOSITION section   *********************************
+
+    @FindBy(how = How.XPATH, using = "//*[@id='layered_form']/div/div[4]/div/span")
+    private WebElement compositionSectionLabel;
+
+    @FindBy(how = How.XPATH, using = "//*[@id='ul_layered_id_feature_5']")
+    private WebElement compositionSectionContainer;
+
+    private String compositionSection(ArrayList<String> listOfElements){
+        String labelText = "";
+        ArrayList<String> actualListOfElements = new ArrayList<String>();
+        try {
+            compositionSectionLabel.isDisplayed();
+            scrollToElement(driver,compositionSectionLabel);
+            List<WebElement> li = compositionSectionContainer.findElements(By.tagName("li"));
+            for (int i = 0; i < listOfElements.size(); i++) {
+                WebElement webElement = li.get(i);
+                labelText = webElement.findElement(By.tagName("label")).getText();
+                actualListOfElements.add(labelText);
+                if (!listOfElements.contains(labelText))
+                    return labelText + " is not present in the list of the expected color items " + listOfElements.toString();
+            }
+            return "Section in Woman Page validated successfully.";
+        } catch (IndexOutOfBoundsException e) {
+            return "Mismatch of no of Items in Expected and Actual. Expected - " + listOfElements.toString() +
+                    " Actual - " + actualListOfElements.toString();
+        }
+    }
+
+
+
+    // ######################################## END OF COMPOSITION SECTION  #######################
+
 
 }
