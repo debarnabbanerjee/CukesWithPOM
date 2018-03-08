@@ -27,7 +27,7 @@ public class loginStep extends basicStep {
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
         }
-       // closeBrowser();
+        closeBrowser();
     }
 
     @Given("^I open Browser using \"([^\"]*)\"$")

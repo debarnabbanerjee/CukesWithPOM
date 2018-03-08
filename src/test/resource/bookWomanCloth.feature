@@ -37,11 +37,11 @@ Feature: Booking a Garment for Woman
       | Cotton (3)    |
       | Viscose (2)   |
       | Polyester (2) |
-      #| Bad           |
+      | Bad           |
 
     Examples:
       | email | password | browser | loginInName |
-      #| debarnab.banerjee@gmail.com | California0! | chrome  | Deb Bane    |
+      | debarnab.banerjee@gmail.com | California0! | chrome  | Deb Bane    |
 
   Scenario Outline: Test to validate the purchase of Items from the Woman Page
 
