@@ -1,6 +1,5 @@
 package pages;
 
-import com.sun.jna.platform.win32.OaIdl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
