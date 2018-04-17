@@ -3,7 +3,9 @@ package util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +16,7 @@ public class basicStep {
     private Properties prop;
     private FileInputStream ip;
     private boolean isPropertyLoaded=false;
-
+    private File file;
 
     public WebDriver getDriver() {
         return driver;
@@ -37,6 +39,11 @@ public class basicStep {
             driver = new FirefoxDriver();
         }else if(browserType.equalsIgnoreCase("ie")){
 
+        }
+        else if(browserType.equalsIgnoreCase("phantom")){
+            file = new File("C:\\Program Files\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe");
+            System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
+            driver = new PhantomJSDriver();
         }
         driver.manage().window().maximize();
         if(!isPropertyLoaded)

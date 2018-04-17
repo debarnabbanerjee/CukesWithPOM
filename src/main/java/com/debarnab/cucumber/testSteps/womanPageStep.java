@@ -5,6 +5,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -26,15 +27,36 @@ public class womanPageStep extends basicStep {
     private homePage homePageElement;
     private womanPage womanPageElement;
 
+//    @BeforeClass
+//    public void initializeWomanPage(){
+//
+//    }
+
     @Then("^In the Woman Page I can see the following under \"([^\"]*)\":$")
-    public void in_the_Woman_Page_I_can_see_the_following(String section,DataTable pageElements) throws Throwable {
+    public void in_the_Woman_Page_I_can_see_the_following(String section, DataTable pageElements) throws Throwable {
         womanPageElement = new womanPage(loginStep.driver);
         List<List<String>> data = pageElements.raw();
         ArrayList<String> list = new ArrayList<String>();
-        for(int i = 1;i<data.size();i++){
+        for (int i = 1; i < data.size(); i++) {
             list.add(data.get(i).get(0));
         }
-       result= womanPageElement.validateSectionsName(section,list);
-        Assert.assertEquals("Categories section in Woman Page validated successfully.",result);
+        result = womanPageElement.validateSectionsName(section, list);
+        Assert.assertEquals("Section in Woman Page validated successfully.", result);
     }
+
+    @Then("^I want to see the item with name \"([^\"]*)\"$")
+    public void i_want_to_see_the_item_with_name(String name) throws Throwable {
+       if(womanPageElement==null){
+           womanPageElement = new womanPage(loginStep.driver);
+       }
+        result=womanPageElement.searchingForTheELementToBeBooked(name);
+       Assert.assertEquals("Able to search for the element.",result);
+
+    }
+
+
+
+
+
+
 }
