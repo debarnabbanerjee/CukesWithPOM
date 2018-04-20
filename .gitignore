@@ -3,5 +3,6 @@ geckodriver.exe
 master.properties
 phantomjsdriver.log
 extent-config.xml
-.idea.workspace.xml
+.idea
 credentials.properties
+bankaccount.properties
