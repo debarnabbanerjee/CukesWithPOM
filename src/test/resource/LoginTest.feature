@@ -9,5 +9,5 @@ Feature: testing Login Test Case
 
     Examples:
       | email                       | password     | browser | loginInName |
-      | debarnab.banerjee@gmail.com | California0! | phantom  | Deb Bane    |
-      | abc@test.com                | 145879       | phantom  | Deb Bane    |
+      | debarnab.banerjee@gmail.com | California0! | chrome  | Deb Bane    |
+      | abc@test.com                | 145879       | chrome  | Deb Bane    |
