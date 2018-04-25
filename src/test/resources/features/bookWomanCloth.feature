@@ -1,5 +1,5 @@
 Feature: Booking a Garment for Woman
-
+  @important
   Scenario Outline: Test to validate the correct UI functioning of the Woman Cloth Booking Page
 
     Given I open Browser using "<browser>"
@@ -40,9 +40,9 @@ Feature: Booking a Garment for Woman
       | Bad           |
 
     Examples:
-      | email | password | browser | loginInName |
-      | debarnab.banerjee@gmail.com | California0! | phantom  | Deb Bane    |
-
+      | email                       | password     | browser | loginInName |
+      | debarnab.banerjee@gmail.com | California0! | chrome  | Deb Bane    |
+  @important
   Scenario Outline: Test to validate the purchase of Items from the Woman Page
 
     Given I open Browser using "<browser>"
@@ -112,5 +112,5 @@ Feature: Booking a Garment for Woman
 #    Then In the Order Confirmation Page I validate the order confirmation message matches "<orderConfirmationMessage>"
 
     Examples:
-      | email                       | password     | browser | loginInName | itemName              | payementConfirmationText                                                    | orderConfirmationMessage                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+      | email | password | browser | loginInName | itemName | payementConfirmationText | orderConfirmationMessage |
    #   | debarnab.banerjee@gmail.com | California0! | phantom  | Deb Bane    | Printed Chiffon Dress | You have chosen to pay by bank wire. Here is a short summary of your order: | Your order on My Store is complete.Please send us a bank wire with  - Amount $(\\d+)\\.(\\d+)  - Name of account owner Pradeep Macharla  - Include these details xyz  - Bank name RTP  - Do not forget to insert your order reference TOCYTIOTT in the subject of your bank wire.  An email has been sent with this information. Your order will be sent as soon as we receive payment. If you have questions, comments or concerns, please contact our expert customer support team. |

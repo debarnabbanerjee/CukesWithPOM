@@ -1,5 +1,5 @@
 Feature: testing Login Test Case
-
+  @billing
   Scenario Outline: Creating a new account
     Given I open Browser using "<browser>"
     When I navigate to the base Url
