@@ -32,8 +32,15 @@ public class loginStep extends basicStep {
 
     @Given("^I open Browser using \"([^\"]*)\"$")
     public void i_open_Browser_using(String browserType) throws Throwable {
-        driver = openBrowser(browserType);
-        Assert.assertTrue(getDriver() != null);
+
+       if(getProp().getProperty("username").equalsIgnoreCase("debarnab") &&
+               getProp().getProperty("password").equalsIgnoreCase("debarnab")){
+           driver = openBrowser(browserType);
+           Assert.assertTrue(getDriver() != null);
+       }
+        else
+           System.out.println("Incorrect validation.. aborting testing");
+
     }
 
     @When("^I navigate to the base Url$")

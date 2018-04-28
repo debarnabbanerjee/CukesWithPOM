@@ -30,6 +30,7 @@ public class basicStep {
     }
 
     public Properties getProp() {
+        loadProperty();
         return prop;
     }
 
