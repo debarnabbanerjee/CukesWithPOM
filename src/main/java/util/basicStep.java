@@ -2,6 +2,7 @@ package util;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
@@ -43,8 +44,9 @@ public class basicStep {
         }else if(browserType.equalsIgnoreCase("firefox")){
             System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"//geckodriver.exe");
             driver = new FirefoxDriver();
-        }else if(browserType.equalsIgnoreCase("ie")){
-
+        }else if(browserType.equalsIgnoreCase("edge")){
+            System.setProperty("webdriver.edge.driver",System.getProperty("user.dir")+"//MicrosoftWebDriver.exe");
+            driver = new EdgeDriver();
         }
         else if(browserType.equalsIgnoreCase("phantom")){
             file = new File("C:\\Program Files\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe");

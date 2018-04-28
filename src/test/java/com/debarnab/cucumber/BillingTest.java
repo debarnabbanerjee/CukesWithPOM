@@ -12,9 +12,8 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
         features = "src//test//resources//features"
         , glue = {"com.debarnab.cucumber.testSteps"}
-        , format = {"pretty", "html:target/site/cucumber-pretty", "json:target/cucumber.json"}
+        , format = {"pretty", "html:target/site/billing/cucumber-pretty-billing.html", "json:target/cucumber-billing.json"}
         , tags = {"@billing"}
-        ,plugin = {"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}
 )
 public class BillingTest {
 }

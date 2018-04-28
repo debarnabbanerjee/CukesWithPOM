@@ -1,6 +1,6 @@
-Feature: testing Login Test Case
+Feature: Billing1
   @billing
-  Scenario Outline: Creating a new account
+  Scenario Outline: Billing 1 scenario 1
     Given I open Browser using "<browser>"
     When I navigate to the base Url
     And I click on Sigin Link
@@ -10,9 +10,10 @@ Feature: testing Login Test Case
     Examples:
       | email                       | password     | browser | loginInName |
       | debarnab.banerjee@gmail.com | California0! | chrome  | Deb Bane    |
-      | abc@test.com                | 145879       | chrome  | Deb Bane    |
+      | abc@test.com                | 145879       | edge  | Deb Bane    |
+
   @billing
-  Scenario Outline: Creating a new account
+  Scenario Outline: Billing1 scenario 2
     Given I open Browser using "<browser>"
     When I navigate to the base Url
     And I click on Sigin Link
@@ -22,4 +23,4 @@ Feature: testing Login Test Case
     Examples:
       | email                       | password     | browser | loginInName |
       | debarnab.banerjee@gmail.com | California0! | chrome  | Deb Bane    |
-      | abc@test.com                | 145879       | chrome  | Deb Bane    |
+      | abc@test.com                | 145879       | edge  | Deb Bane    |

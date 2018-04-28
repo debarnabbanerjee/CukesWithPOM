@@ -10,7 +10,7 @@ Feature: testing Login Test Case
     Examples:
       | email                       | password     | browser | loginInName |
       | debarnab.banerjee@gmail.com | California0! | chrome  | Deb Bane    |
-      | abc@test.com                | 145879       | chrome  | Deb Bane    |
+      | abc@test.com                | 145879       | edge  | Deb Bane    |
 
   @extra
   Scenario Outline: Creating a new account
@@ -23,4 +23,4 @@ Feature: testing Login Test Case
     Examples:
       | email                       | password     | browser | loginInName |
       | debarnab.banerjee@gmail.com | California0! | chrome  | Deb Bane    |
-      | abc@test.com                | 145879       | chrome  | Deb Bane    |
+      | abc@test.com                | 145879       | edge  | Deb Bane    |
