@@ -100,15 +100,15 @@
     <build>
         <plugins>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
-                <configuration>
-                    <source>1.${java.version}</source>
-                    <target>1.${java.version}</target>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<version>3.3</version>-->
+                <!--<configuration>-->
+                    <!--<source>1.${java.version}</source>-->
+                    <!--<target>1.${java.version}</target>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
             <!--<plugin>-->
                 <!--<groupId>org.apache.maven.plugins</groupId>-->
@@ -123,24 +123,74 @@
             <!--</plugin>-->
             <!--newly added sure fire plugin for parallel tests-->
 
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-surefire-plugin</artifactId>-->
+                <!--<version>2.21.0</version>-->
+                <!--<configuration>-->
+                    <!--<parallel>classes</parallel>-->
+                    <!--<forkMode>perthread</forkMode>-->
+                    <!--<threadCount>6</threadCount>-->
+                    <!--&lt;!&ndash;<forkCount>3</forkCount>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<reuseForks>true</reuseForks>&ndash;&gt;-->
+                    <!--<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
+                    <!--&lt;!&ndash;<systemPropertyVariables>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<databaseSchema>MY_TEST_SCHEMA_${surefire.forkNumber}</databaseSchema>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</systemPropertyVariables>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<workingDirectory>FORK_DIRECTORY_${surefire.forkNumber}</workingDirectory>&ndash;&gt;-->
+                    <!--<includes>**/*Runner.java</includes>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+
+            <!--For jvm parallel running-->
+            <plugin>
+                <groupId>com.github.temyers</groupId>
+                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+                <version>4.2.0</version>
+                <executions>
+                    <execution>
+                        <id>generateRunners</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>generateRunners</goal>
+                        </goals>
+                        <configuration>
+                            <glue>
+                                <package>com.debarnab.cucumber</package>
+                            </glue>
+                            <outputDirectory>target/generated-test-sources/cucumber</outputDirectory>
+                            <featuresDirectory>src/test/resources/</featuresDirectory>
+                            <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
+                            <namingPattern>Parallel{c}IT</namingPattern>
+                            <!-- One of [SCENARIO, FEATURE]. SCENARIO generates one runner per scenario.  FEATURE generates a runner per feature. -->
+                            <parallelScheme>FEATURE</parallelScheme>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.21.0</version>
-                <configuration>
-                    <parallel>classes</parallel>
-                    <forkMode>perthread</forkMode>
-                    <threadCount>3</threadCount>
-                    <!--<forkCount>3</forkCount>-->
-                    <!--<reuseForks>true</reuseForks>-->
-                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
-                    <!--<systemPropertyVariables>-->
-                        <!--<databaseSchema>MY_TEST_SCHEMA_${surefire.forkNumber}</databaseSchema>-->
-                    <!--</systemPropertyVariables>-->
-                    <!--<workingDirectory>FORK_DIRECTORY_${surefire.forkNumber}</workingDirectory>-->
-                    <includes>**/*Test.java</includes>
-                </configuration>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.19.1</version>
+                <executions>
+                    <execution>
+                        <id>acceptance-test</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                        <configuration>
+                            <forkCount>10</forkCount>
+                            <reuseForks>true</reuseForks>
+                            <includes>
+                                <include>**/*IT.class</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
+
 
 
 
@@ -160,7 +210,11 @@
                         <configuration>
                             <projectName>cucumber-jvm-example</projectName>
                             <outputDirectory>${project.build.directory}/site/cucumber-reports</outputDirectory>
-                            <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                            <cucumberOutput>${project.build.directory}/cucumber-parallel/1.json</cucumberOutput>
+                            <cucumberOutput>${project.build.directory}/cucumber-parallel/2.json</cucumberOutput>
+                            <cucumberOutput>${project.build.directory}/cucumber-parallel/3.json</cucumberOutput>
+                            <cucumberOutput>${project.build.directory}/cucumber-parallel/4.json</cucumberOutput>
+                            <cucumberOutput>${project.build.directory}/cucumber-parallel/5.json</cucumberOutput>
                             <skippedFails>true</skippedFails>
                             <!--<enableFlashCharts>false</enableFlashCharts>-->
                             <buildNumber>42</buildNumber>

@@ -11,6 +11,6 @@ import org.junit.runner.RunWith;
         , format = {"pretty", "html:target/site/extra/cucumber-pretty-extra.html", "json:target/cucumber-extra.json"}
         , tags = {"@extra"}
 )
-public class extraTest {
+public class extraRunner {
 
 }

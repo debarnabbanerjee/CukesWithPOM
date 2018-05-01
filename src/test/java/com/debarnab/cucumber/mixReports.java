@@ -20,10 +20,12 @@ public class mixReports {
             e.printStackTrace();
         }
         File reportOutputDirectory = new File("target");
-        List<String> jsonFiles = new ArrayList<>();
-        jsonFiles.add("target/cucumber-billing.json");
-        jsonFiles.add("target/cucumber-extra.json");
-        jsonFiles.add("target/cucumber-important.json");
+        List<String> jsonFiles = new ArrayList<String>();
+        jsonFiles.add("target/cucumber-parallel/1.json");
+        jsonFiles.add("target/cucumber-parallel/2.json");
+        jsonFiles.add("target/cucumber-parallel/3.json");
+        jsonFiles.add("target/cucumber-parallel/4.json");
+        jsonFiles.add("target/cucumber-parallel/5.json");
 
         String buildNumber = "1";
         String projectName = "cucumberProject";
